@@ -1,8 +1,3 @@
----
-import githubIcon from '../assets/github.svg';
-import linkedinIcon from '../assets/linkedin.svg';
----
-
 <div id="hero-container">
   <main>
     <section id="hero">
@@ -10,17 +5,16 @@ import linkedinIcon from '../assets/linkedin.svg';
       <h2>Software Developer & AI Researcher</h2>
       <section id="icons">
         <a href="https://github.com/schwaad" target="_blank" rel="noopener noreferrer" class="hover-target icon-link">
-          <div class="svg-icon" style={`mask-image: url(${githubIcon.src}); -webkit-mask-image: url(${githubIcon.src});`}></div>
+          <div class="svg-icon" style="mask-image: url('/assets/github.svg'); -webkit-mask-image: url('/assets/github.svg');"></div>
         </a>
         <a href="https://www.linkedin.com/in/joseivoschwadea/" target="_blank" rel="noopener noreferrer" class="hover-target icon-link">
-          <div class="svg-icon" style={`mask-image: url(${linkedinIcon.src}); -webkit-mask-image: url(${linkedinIcon.src});`}></div>
+          <div class="svg-icon" style="mask-image: url('/assets/linkedin.svg'); -webkit-mask-image: url('/assets/linkedin.svg');"></div>
         </a>
       </section>
     </section>
     <hr class="linha-divisoria"/>
   </main>
 </div>
-
 <style>
   @keyframes slipFadeUp {
       0% {
