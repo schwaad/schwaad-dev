@@ -1,0 +1,136 @@
+---
+import githubIcon from '../assets/github.svg';
+import linkedinIcon from '../assets/linkedin.svg';
+---
+
+<div id="hero-container">
+  <main>
+    <section id="hero">
+      <h1>José Ivo Schwade Araújo</h1>
+      <h2>Software Developer & AI Researcher</h2>
+      <section id="icons">
+        <a href="https://github.com/schwaad" target="_blank" rel="noopener noreferrer" class="hover-target icon-link">
+          <div class="svg-icon" style={`mask-image: url(${githubIcon.src}); -webkit-mask-image: url(${githubIcon.src});`}></div>
+        </a>
+        <a href="https://www.linkedin.com/in/joseivoschwadea/" target="_blank" rel="noopener noreferrer" class="hover-target icon-link">
+          <div class="svg-icon" style={`mask-image: url(${linkedinIcon.src}); -webkit-mask-image: url(${linkedinIcon.src});`}></div>
+        </a>
+      </section>
+    </section>
+    <hr class="linha-divisoria"/>
+  </main>
+</div>
+
+<style>
+  @keyframes slipFadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px); 
+        }
+      100% {
+        opacity: 1;
+        transform: translateY(0); 
+        }
+  }
+
+  @keyframes openLine{
+    0%{
+      width: 0%;
+    }
+    80%{
+      width: 48%
+    }
+    100%{
+    width: 50%;
+    }
+  }
+  .linha-divisoria {
+    height: 3px;
+    width: 50%; 
+    background-color: #e0e0e0;
+    
+    margin: 4rem auto; 
+    border-radius: 2px;
+    opacity: 0.2;      
+
+    animation: openLine 1.75s ease-out;
+  }
+
+
+  main{
+      animation: slipFadeUp 1s ease;
+  }
+
+  
+  @font-face {
+    font-family: 'JetBrainsMono Nerd Font Regular';
+    src: url('/fonts/JetBrainsMonoNerdFontMono-Regular.ttf') format('truetype');
+    font-weight:300;
+    font-style: normal;
+    font-display: swap; 
+  }
+  @font-face {
+    font-family: 'JetBrainsMono Nerd Font Thin';
+    src: url('/fonts/JetBrainsMonoNerdFontMono-Thin.ttf') format('truetype');
+    font-weight:300;
+    font-style: normal;
+    font-display: swap; 
+  }
+
+  #hero{
+    margin-top: 10%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    width: auto; 
+    
+    gap: 30px; 
+    margin-top: 1rem;
+  }
+  .icon-link {
+    display: inline-block;
+    margin: 0 10px;
+  }
+
+  .svg-icon {
+    width: 32px;
+    height: 32px;
+
+    background-color: darkgray; 
+    
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
+    
+    transition: background-color 0.3s ease;
+  }
+
+  .icon-link:hover .svg-icon {
+    background-color: darkorange;
+  }
+
+  body {
+  font-family: 'JetBrainsMono Nerd Font', monospace;
+  }
+
+  h1 {
+    color: darkorange;
+  }
+
+  h2 {
+    font-family: 'JetBrainsMono Nerd Font Thin', monospace;
+    color: darkgray;
+  }
+</style>

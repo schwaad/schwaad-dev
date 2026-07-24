@@ -1,0 +1,190 @@
+<div id="container">
+  <main>
+    <section id="projects">
+      <h1>Projects</h1>
+      <p>Here are some projects that I've worked on:</p>
+      <div id="projects-figures">
+        <figure>
+          <a href="https://haistech.com/products/assistente-hospitalar" target="_blank" rel="noopener noreferrer">
+          <img src="src/assets/clinical-entity-recognition.svg" alt="Diagrama do sistema de extração de entidades clínicas"/>
+          </a>
+          <figcaption>A clinical entity extraction system using fine-tuned LLMs with Weak Supervision techniques
+            for classification of 15 different clinical entities that acts as a auxiliar system for other HAIS Tech solutions.</figcaption>
+        </figure>
+        <figure>
+          <a href="https://haistech.com/haisguias/" target="_blank" rel="noopener noreferrer">
+          <img src="src/assets/information retrieval.png" width="50%", height="50%"/>
+          </a>
+          <figcaption>A query to official healthcare code mapper system using an information retrieval pipeline
+            with hybrid search, reranker model and few-shot LLM prediction that acts as an auxiliar system for ohter HAIS Tech solutions.</figcaption>
+        </figure>
+        <figure>
+          <a href="https://petcc.dimap.ufrn.br/" target="_blank" rel="noopener noreferrer">
+          <img src="src/assets/epet.png" width="50%", height="50%"/>
+          </a>
+          <figcaption>ePET: A web application using Vue.JS and Spring Framework to manage all activities of the
+            Educational Tutoring Program of the Computer Science course at UFRN.</figcaption>
+        </figure>
+          <figure>
+          <a href="https://github.com/VictorAGomes/lousa" target="_blank" rel="noopener noreferrer">
+          <img src="src/assets/lousa_digital.png" width="50%", height="50%"/>
+          </a>
+          <figcaption>Lousa Digital: A "Code for fun" computer vision application that allows the user to draw with their fingers and contains
+            a "similarity game" where the user needs to recreate a shape, receiving a similarity score at the end. Developed to the 2025 Profession
+            Show event at UFRN to engage teenage students on the Computer Science field.</figcaption>
+        </figure>
+      </div>
+    </section>
+    <hr class="linha-divisoria"/>
+  </main>
+</div>
+<style>
+  @keyframes slipFadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px); 
+        }
+      100% {
+        opacity: 1;
+        transform: translateY(0); 
+        }
+  }
+  main{
+    animation: slipFadeUp 1s ease;
+  }
+
+  @font-face {
+    font-family: 'JetBrainsMono Nerd Font Regular';
+    src: url('/fonts/JetBrainsMonoNerdFontMono-Regular.ttf') format('truetype');
+    font-weight:300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'JetBrainsMono Nerd Font Thin';
+    src: url('/fonts/JetBrainsMonoNerdFontMono-Thin.ttf') format('truetype');
+    font-weight:300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'JetBrainsMono Nerd Font Bold';
+    src: url('/fonts/JetBrainsMonoNerdFontMono-Bold.ttf') format('truetype');
+    font-weight:300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+    @keyframes openLine{
+    0%{
+      width: 0%;
+    }
+    80%{
+      width: 48%
+    }
+    100%{
+    width: 50%;
+    }
+  }
+  .linha-divisoria {
+    height: 3px;
+    width: 50%;
+    background-color: #e0e0e0;
+    
+    margin: 4rem auto;
+    border-radius: 2px;
+    opacity: 0.2;
+
+    animation: openLine 1.75s ease-out;
+  }
+
+
+  #projects{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+ #projects-figures {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Cria 2 colunas de larguras iguais */
+    gap: 2rem; /* Adiciona um espaço agradável entre as colunas e linhas */
+    justify-items: center; /* Centraliza os itens dentro das próprias colunas */
+    align-items: start; /* Alinha os itens pelo topo (útil se as legendas tiverem tamanhos diferentes) */
+    
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #projects-figures figure a {
+    width: 100%;
+    display: block;
+    position: relative; /* Necessário para ancorar a sobreposição */
+    border-radius: 8px; /* Mantém os cantos arredondados */
+    overflow: hidden; /* Corta a sobreposição para não vazar das bordas arredondadas */
+  }
+
+  /* Cria a camada laranja invisível por cima da imagem */
+  #projects-figures figure a::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Laranja (DarkOrange) com 30% de opacidade */
+    background-color: rgba(255, 140, 0, 0.3); 
+    
+    opacity: 0; /* Fica invisível por padrão */
+    transition: opacity 0.3s ease; /* Faz a cor aparecer de forma suave */
+    
+    /* Muito importante: impede que a sobreposição bloqueie o clique do mouse no link */
+    pointer-events: none; 
+  }
+
+  /* Faz a camada aparecer quando o mouse passa por cima do link */
+  #projects-figures figure a:hover::after {
+    opacity: 1;
+  }
+
+  #projects-figures figure img:hover{
+    transform: scale(1.05);
+  }
+
+  /* Garanta que o seletor da imagem seja flexível o suficiente */
+  #projects-figures figure img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    display: block; /* Garante que a imagem não crie espaços em branco indesejados */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  body {
+  font-family: 'JetBrainsMono Nerd Font', monospace;
+  }
+
+  h1 {
+    color: darkorange;
+  }
+
+  p, figcaption{
+    font-family: 'JetBrainsMono Nerd Font', monospace;
+    font-size: 18px;
+    margin: 1rem 4rem;
+    text-align:justify;
+    color: darkgray;
+  }
+  figcaption {
+    font-family: 'JetBrainsMono Nerd Font Bold'
+  }
+
+</style>
+
+
+

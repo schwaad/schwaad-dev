@@ -1,0 +1,203 @@
+<div id="container">
+  <main>
+    <section id="presentations">
+      <h1>Presentations</h1>
+      <p>Here are some presentations and courses that gave/taught:</p>
+      <div id="presentations-figures">
+        <figure>
+          <a href="https://www.canva.com/design/DAGntZ6WxUg/N_TdJhvyJFLXlQM6iqq_uQ/view?utm_content=DAGntZ6WxUg&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h098261be5b" target="_blank" rel="noopener noreferrer">
+          <img src="src/assets/seminar_chess.png" alt="Diagrama do sistema de extração de entidades clínicas"/>
+          </a>
+          <figcaption>The History of Artificial Intelligence told through Chess: A seminar aiming to correlate
+            the history of AI with the history of modern Chess, showing how both fields contributed to each other. Lectured at IMD/UFRN</figcaption>
+        </figure>
+        <figure>
+          <a href="https://www.canva.com/design/DAGTNEZ4qSo/mNPtmy1_nl4fjbyzs6H_1w/view?utm_content=DAGTNEZ4qSo&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h41be9c0eb3" target="_blank" rel="noopener noreferrer">
+          <img src="src/assets/game_seminar.png" width="50%", height="50%"/>
+          </a>
+          <figcaption>Algorithm complexity and Game optimization: A seminar aiming to explore fundamental concepts in algorithm complexity
+            and show their applications through game optimization techniques. Lectured at the UPDATE event, at UFRN</figcaption>
+        </figure>
+        <figure>
+          <a href="https://petcc-ufrn.github.io/minicurso-ciencia-de-dados/intro.html" target="_blank" rel="noopener noreferrer">
+          <img src="src/assets/data_science.png" width="50%", height="50%"/>
+          </a>
+          <figcaption>Introduction to Data Science: a freshman course aiming to introduct new Computer Science students into the Data Science Field.</figcaption>
+        </figure>
+          <figure>
+          <a href="https://petcc-ufrn.github.io/minicurso-spring/" target="_blank" rel="noopener noreferrer">
+          <img src="src/assets/spring.png" width="50%", height="50%"/>
+          </a>
+          <figcaption>Introduction to Back-end development with Spring: a freshman course aiming to show new Computer Science students the power and
+          versatility of the Spring Framework tool for back-end development.</figcaption>
+        </figure>
+        <figure>
+          <a href="https://petcc-ufrn.github.io/minicurso-linux-git/" target="_blank" rel="noopener noreferrer">
+          <img src="src/assets/linux_git.png" width="50%", height="50%"/>
+          </a>
+          <figcaption>Introduction to Linux and Git: a freshman course based on MIT's Missing Semester Course focused on teaching the basics of 
+            Linux, Bash, Git and GitHub</figcaption>
+        </figure>
+        <figure>
+          <a href="https://drive.google.com/file/d/1SWLdVJ76_7tl0F2awXLkPSsJqK5R_7ga/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+          <img src="src/assets/datapet.jpg" width="50%", height="50%"/>
+          </a>
+          <figcaption>DataPET: Pratical challenges in Data Science: a presentation at the XIV ENEPET, at the University of Ceará, Fortaleza, Brazil, talking
+          about a survey made by me and my collegues at PETCC about student and professor performances analyzing open data from UFRN.</figcaption>
+        </figure>
+      </div>
+    </section>
+    <hr class="linha-divisoria"/>
+  </main>
+</div>
+<style>
+  @keyframes slipFadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px); 
+        }
+      100% {
+        opacity: 1;
+        transform: translateY(0); 
+        }
+  }
+  main{
+    animation: slipFadeUp 1s ease;
+  }
+
+  @font-face {
+    font-family: 'JetBrainsMono Nerd Font Regular';
+    src: url('/fonts/JetBrainsMonoNerdFontMono-Regular.ttf') format('truetype');
+    font-weight:300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'JetBrainsMono Nerd Font Thin';
+    src: url('/fonts/JetBrainsMonoNerdFontMono-Thin.ttf') format('truetype');
+    font-weight:300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'JetBrainsMono Nerd Font Bold';
+    src: url('/fonts/JetBrainsMonoNerdFontMono-Bold.ttf') format('truetype');
+    font-weight:300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+    @keyframes openLine{
+    0%{
+      width: 0%;
+    }
+    80%{
+      width: 48%
+    }
+    100%{
+    width: 50%;
+    }
+  }
+  .linha-divisoria {
+    height: 3px;
+    width: 50%;
+    background-color: #e0e0e0;
+    
+    margin: 4rem auto;
+    border-radius: 2px;
+    opacity: 0.2;
+
+    animation: openLine 1.75s ease-out;
+  }
+
+
+  #presentations{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+ #presentations-figures {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Cria 2 colunas de larguras iguais */
+    gap: 2rem; /* Adiciona um espaço agradável entre as colunas e linhas */
+    justify-items: center; /* Centraliza os itens dentro das próprias colunas */
+    align-items: start; /* Alinha os itens pelo topo (útil se as legendas tiverem tamanhos diferentes) */
+    
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #presentations-figures figure a {
+    width: 100%;
+    display: block;
+    position: relative; /* Necessário para ancorar a sobreposição */
+    border-radius: 8px; /* Mantém os cantos arredondados */
+    overflow: hidden; /* Corta a sobreposição para não vazar das bordas arredondadas */
+  }
+
+  /* Cria a camada laranja invisível por cima da imagem */
+  #presentations-figures figure a::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Laranja (DarkOrange) com 30% de opacidade */
+    background-color: rgba(255, 140, 0, 0.3); 
+    
+    opacity: 0; /* Fica invisível por padrão */
+    transition: opacity 0.3s ease; /* Faz a cor aparecer de forma suave */
+    
+    /* Muito importante: impede que a sobreposição bloqueie o clique do mouse no link */
+    pointer-events: none; 
+  }
+
+  /* Faz a camada aparecer quando o mouse passa por cima do link */
+  #presentations-figures figure a:hover::after {
+    opacity: 1;
+  }
+
+  #presentations-figures figure img:hover{
+    transform: scale(1.05);
+  }
+
+  /* Garanta que o seletor da imagem seja flexível o suficiente */
+  #presentations-figures figure img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    display: block; /* Garante que a imagem não crie espaços em branco indesejados */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  body {
+  font-family: 'JetBrainsMono Nerd Font', monospace;
+  }
+
+  h1 {
+    color: darkorange;
+  }
+
+  p, figcaption{
+    font-family: 'JetBrainsMono Nerd Font', monospace;
+    font-size: 18px;
+    margin: 1rem 4rem;
+    text-align:justify;
+    color: darkgray;
+  }
+  figcaption {
+    font-family: 'JetBrainsMono Nerd Font Bold'
+  }
+
+</style>
+
+
+
+

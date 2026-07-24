@@ -1,23 +1,156 @@
+---
+import { fade } from "astro:transitions";
+import favicon from "../assets/shi.svg"; 
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href={favicon.src} />
+        <meta name="generator" content={Astro.generator} />
+        <title>schwaad • portifolio</title>
+    </head>
+    <body transition:animate={fade({ duration: "0.4s" })}>
+        <div class="global-zoom-area">
+            <div class="original-content">
+                <slot />
+            </div>
+            
+            <div class="custom-cursor">
+                <div class="cursor-content"></div>
+            </div>
+        </div>
+
+        <script>
+            const cursor = document.querySelector('.custom-cursor') as HTMLElement;
+            const cursorContent = document.querySelector('.cursor-content') as HTMLElement;
+            const originalContent = document.querySelector('.original-content') as HTMLElement;
+            
+            const hoverTargets = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li, strong, em, figcaption, img');
+            const hoverLinks = document.querySelectorAll('a, #lang')
+
+            if (cursor && cursorContent && originalContent) {
+                cursorContent.innerHTML = originalContent.innerHTML;
+
+                const zoomLevel = 2; 
+
+                document.addEventListener('mousemove', (e) => {
+                    const mouseX = e.pageX;
+                    const mouseY = e.pageY;
+                    
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                    
+                    cursorContent.style.width = originalContent.offsetWidth + 'px';
+                    cursorContent.style.height = originalContent.offsetHeight + 'px';
+                    
+                    const currentRadius = cursor.getBoundingClientRect().width / 2;
+                    
+                    const moveX = (-mouseX * zoomLevel) + currentRadius;
+                    const moveY = (-mouseY * zoomLevel) + currentRadius;
+                    
+                    cursorContent.style.transform = `translate(${moveX}px, ${moveY}px) scale(${zoomLevel})`;
+                    
+                    if (cursor.style.opacity === '0' || !cursor.style.opacity) {
+                        cursor.style.opacity = '1';
+                    }
+                });
+
+                hoverTargets.forEach(target => {
+                    target.addEventListener('mouseover', () => {
+                        cursor.classList.add('grow');
+                    });
+                    
+                    target.addEventListener('mouseout', () => {
+                        cursor.classList.remove('grow');
+                    });
+                });
+              hoverLinks.forEach(link => {
+                link.addEventListener('mouseover', () => {
+                  cursor.classList.add('shrink');
+                });
+
+                link.addEventListener('mouseout', () => {
+                  cursor.classList.remove('shrink');
+                });
+              })
+            }
+        </script>
+    </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+    html,
+    body {
+        cursor: none;
+        margin: 0;
+        width: 100%;
+        min-height: 100vh;
+        background-color: #202020;
+        overflow-x: hidden;
+    }
+    
+    a, button {
+        cursor: none; 
+    }
+
+    .global-zoom-area {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+    }
+
+    .original-content {
+        width: 100%;
+        min-height: 100vh;
+    }
+    .cursor-content #navbar {
+    position: absolute !important; /* Impede a cópia de se fixar na tela inteira */
+    backdrop-filter: none !important; /* Backdrop-filters dentro de overflows costumam bugar o z-index */
+    z-index: 1 !important; /* Tira a prioridade visual da cópia */
+    }
+
+    .custom-cursor {
+        width: 16px;  
+        height: 16px;
+        border: 2px solid #e0e0e0; 
+        border-radius: 50%; 
+        position: fixed; 
+        pointer-events: none; 
+        z-index: 99999 !important; 
+        transform: translate3d(-50%, -50%, 0);
+        
+        overflow: hidden;
+        background-color: #202020; 
+        
+        transition: 
+            width 0.3s ease, 
+            height 0.3s ease, 
+            background-color 0.3s ease,
+            border-color 0.3s ease;
+        
+        opacity: 0; 
+    }
+    .custom-cursor.grow {
+        width: 80px; 
+        height: 80px;
+        border-color: darkorange; 
+    }
+
+    .custom-cursor.shrink {
+      width: 2px;
+      height: 2px;
+      border-color: darkorange;
+    }
+
+    .cursor-content {
+        position: absolute;
+        transform-origin: top left;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+    }
+
 </style>

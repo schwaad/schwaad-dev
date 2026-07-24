@@ -1,0 +1,84 @@
+<div id="container">
+    <section id="navbar">
+      <a href="#">home</a>
+      <a href="#about">about me</a>
+      <a href="#projects">projects</a>
+      <a href="#presentations">presentations</a>
+
+<button id="lang-btn"><p id="lang">🇧🇷 PT </p><span id="parallel-bar"> | </span><p id="lang"> 🇺🇸 EN</p></button>
+    </section>
+  <main>
+  </main>
+</div>
+<style>
+@keyframes navbarFadeDown {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -30px); 
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0); 
+    }
+}
+
+#navbar {
+    position: fixed;
+    top: 2rem; 
+    z-index: 900;
+
+    left: 50%;
+    transform: translateX(-50%);
+    
+    animation: navbarFadeDown 1s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 50px;
+    background-color: rgba(32, 32, 32, 0.7); 
+    padding: 10px 20px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px); 
+}
+
+#navbar a {
+  color: #e0e0e0;
+  text-decoration:none;
+}
+
+#navbar a:hover{
+  color: darkorange;
+  transition: .3s;
+  }
+
+#lang-btn {
+  background: transparent; 
+  border: 1px solid rgba(224, 224, 224, 0.3); 
+  color: #e0e0e0; 
+  padding: 4px 16px;
+  border-radius: 50px; 
+  font-family: inherit; 
+  font-size: 0.9rem;
+  
+  cursor: none; 
+  transition: 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+#lang-btn span{
+  margin-top: 13px;
+}
+
+#lang-btn p{
+transition: 0.3s ease;
+}
+
+#lang-btn p:hover {
+color: darkorange; 
+}
+</style>
+
