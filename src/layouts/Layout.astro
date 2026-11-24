@@ -23,12 +23,106 @@ import { fade } from "astro:transitions";
         </div>
 
         <script>
+            const translations = {
+                en: {
+                    'nav.home': 'home',
+                    'nav.about': 'about me',
+                    'nav.projects': 'projects',
+                    'nav.presentations': 'presentations',
+                    'hero.role': 'Software Developer & AI Researcher',
+                    'about.title': 'About me',
+                    'about.intro': `Hi, my name is José Ivo and I'm an Information Technology undergraduate with emphasis in Computer Science at the Universidade Federal do Rio Grande do Norte. I'm currently working as a Jr. Artificial Intelligence Developer for HAIS TECH, and I'm part of a research group at IMD/UFRN focused on Deep Continuous Learning with Adaptive Resonance Theory Neural Networks. My main work/research interests consist of various AI and Machine Learning themes such as Continuous Reinforcement Learning, Uncertainty in AI and LLMs applied to the medical domain. I'm also interested in Linux and Unix-like systems and Back-end development. Currently, I'm searching to gather development experience in the job market, but I aim to follow an academic career, and I'm really interested in becoming a College Professor.`,
+                    'about.caption': 'Me teaching a freshman Data Science course as a PET-CC fellow at DIMAP/UFRN (2025).',
+                    'about.experience': `My work experience consists mostly of Python development for Machine Learning applications using practical frameworks such as FastAPI; LLM agents with Ollama, vLLM and LangChain; SQL and NoSQL databases such as MongoDB and PostgreSQL; and Machine Learning Ops using Docker, W&B and GitLab/GitHub CI/CD pipelines. I also have experience in Back-end development with Java using the Spring Framework and in Front-end development using Vue.js and React.`,
+                    'projects.title': 'Projects',
+                    'projects.intro': `Here are some projects that I've worked on:`,
+                    'projects.clinical': 'A clinical entity extraction system using fine-tuned LLMs with Weak Supervision techniques to classify 15 different clinical entities. It serves as an auxiliary system for other HAIS Tech solutions.',
+                    'projects.healthcare': 'A system that maps queries to official healthcare codes using an information retrieval pipeline with hybrid search, a reranker model and few-shot LLM prediction. It serves as an auxiliary system for other HAIS Tech solutions.',
+                    'projects.epet': 'ePET: A web application built with Vue.js and the Spring Framework to manage all activities of the Educational Tutorial Program for the Computer Science course at UFRN.',
+                    'projects.board': 'Lousa Digital: A "code for fun" computer vision application that lets users draw with their fingers and includes a similarity game in which the user recreates a shape and receives a score. Developed for the 2025 Professions Fair at UFRN to engage teenage students with Computer Science.',
+                    'presentations.title': 'Presentations',
+                    'presentations.intro': `Here are some presentations and courses that I've given or taught:`,
+                    'presentations.chess': 'The History of Artificial Intelligence Told Through Chess: A seminar connecting the history of AI with the history of modern chess and showing how the two fields contributed to each other. Presented at IMD/UFRN.',
+                    'presentations.games': 'Algorithm Complexity and Game Optimization: A seminar exploring fundamental concepts in algorithm complexity and their application through game optimization techniques. Presented at the UPDATE event at UFRN.',
+                    'presentations.dataScience': 'Introduction to Data Science: A course designed to introduce first-year Computer Science students to the field of Data Science.',
+                    'presentations.spring': 'Introduction to Back-end Development with Spring: A course designed to show first-year Computer Science students the power and versatility of the Spring Framework for back-end development.',
+                    'presentations.linux': `Introduction to Linux and Git: A course based on MIT's Missing Semester, focused on teaching the fundamentals of Linux, Bash, Git and GitHub.`,
+                    'presentations.datapet': 'DataPET — Practical Challenges in Data Science: A presentation at the XIV ENEPET at the Federal University of Ceará, in Fortaleza, Brazil, about a study conducted by my PET-CC colleagues and me on student and professor performance using UFRN open data.'
+                },
+                pt: {
+                    'nav.home': 'início',
+                    'nav.about': 'sobre mim',
+                    'nav.projects': 'projetos',
+                    'nav.presentations': 'apresentações',
+                    'hero.role': 'Desenvolvedor de Software e Pesquisador de IA',
+                    'about.title': 'Sobre mim',
+                    'about.intro': 'Olá, meu nome é José Ivo e sou graduando em Tecnologia da Informação, com ênfase em Ciência da Computação, pela Universidade Federal do Rio Grande do Norte. Atualmente trabalho como Desenvolvedor Júnior de Inteligência Artificial na HAIS TECH e faço parte de um grupo de pesquisa no IMD/UFRN voltado ao Aprendizado Contínuo Profundo com Redes Neurais de Teoria da Ressonância Adaptativa. Meus principais interesses de trabalho e pesquisa abrangem temas de IA e Aprendizado de Máquina, como Aprendizado por Reforço Contínuo, Incerteza em IA e LLMs aplicados à área médica. Também me interesso por Linux, sistemas semelhantes ao Unix e desenvolvimento Back-end. Atualmente busco ampliar minha experiência profissional como desenvolvedor, mas pretendo seguir carreira acadêmica e tenho grande interesse em me tornar professor universitário.',
+                    'about.caption': 'Eu ministrando um curso de Ciência de Dados para calouros como bolsista do PET-CC, no DIMAP/UFRN (2025).',
+                    'about.experience': 'Minha experiência profissional consiste principalmente no desenvolvimento em Python para aplicações de Aprendizado de Máquina, utilizando frameworks como FastAPI; agentes de LLM com Ollama, vLLM e LangChain; bancos de dados SQL e NoSQL, como MongoDB e PostgreSQL; e operações de Aprendizado de Máquina com Docker, W&B e pipelines de CI/CD do GitLab/GitHub. Também possuo experiência em desenvolvimento Back-end com Java e Spring Framework e em desenvolvimento Front-end com Vue.js e React.',
+                    'projects.title': 'Projetos',
+                    'projects.intro': 'Estes são alguns projetos nos quais trabalhei:',
+                    'projects.clinical': 'Um sistema de extração de entidades clínicas que utiliza LLMs ajustados com técnicas de Supervisão Fraca para classificar 15 entidades clínicas diferentes. Atua como sistema auxiliar para outras soluções da HAIS Tech.',
+                    'projects.healthcare': 'Um sistema que mapeia consultas para códigos oficiais de saúde por meio de um pipeline de recuperação de informação, com busca híbrida, modelo reranker e predição few-shot com LLM. Atua como sistema auxiliar para outras soluções da HAIS Tech.',
+                    'projects.epet': 'ePET: Uma aplicação web desenvolvida com Vue.js e Spring Framework para gerenciar todas as atividades do Programa de Educação Tutorial do curso de Ciência da Computação da UFRN.',
+                    'projects.board': 'Lousa Digital: Uma aplicação de visão computacional desenvolvida por diversão que permite desenhar com os dedos e inclui um jogo de similaridade, no qual o usuário recria uma forma e recebe uma pontuação. Criada para a Mostra de Profissões de 2025 da UFRN, com o objetivo de aproximar estudantes adolescentes da Ciência da Computação.',
+                    'presentations.title': 'Apresentações',
+                    'presentations.intro': 'Estas são algumas apresentações e alguns cursos que ministrei:',
+                    'presentations.chess': 'A História da Inteligência Artificial Contada por Meio do Xadrez: Um seminário que relaciona a história da IA à do xadrez moderno e mostra como as duas áreas contribuíram entre si. Apresentado no IMD/UFRN.',
+                    'presentations.games': 'Complexidade de Algoritmos e Otimização de Jogos: Um seminário que explora conceitos fundamentais de complexidade de algoritmos e suas aplicações em técnicas de otimização de jogos. Apresentado no evento UPDATE, na UFRN.',
+                    'presentations.dataScience': 'Introdução à Ciência de Dados: Um curso voltado a apresentar a área de Ciência de Dados a estudantes ingressantes de Ciência da Computação.',
+                    'presentations.spring': 'Introdução ao Desenvolvimento Back-end com Spring: Um curso voltado a mostrar aos estudantes ingressantes de Ciência da Computação o poder e a versatilidade do Spring Framework no desenvolvimento Back-end.',
+                    'presentations.linux': 'Introdução a Linux e Git: Um curso baseado no Missing Semester do MIT, focado no ensino dos fundamentos de Linux, Bash, Git e GitHub.',
+                    'presentations.datapet': 'DataPET — Desafios Práticos em Ciência de Dados: Uma apresentação realizada no XIV ENEPET, na Universidade Federal do Ceará, em Fortaleza, sobre um estudo conduzido por mim e meus colegas do PET-CC a respeito do desempenho de estudantes e professores, utilizando dados abertos da UFRN.'
+                }
+            } as const;
+
+            type Language = keyof typeof translations;
+
+            function setLanguage(language: Language) {
+                document.documentElement.lang = language === 'pt' ? 'pt-BR' : 'en';
+
+                document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((element) => {
+                    const key = element.dataset.i18n as keyof typeof translations.en;
+                    const translatedText = translations[language][key];
+
+                    if (translatedText) element.textContent = translatedText;
+                });
+
+                document.querySelectorAll<HTMLButtonElement>('[data-language]').forEach((button) => {
+                    const isActive = button.dataset.language === language;
+                    button.classList.toggle('active', isActive);
+                    button.setAttribute('aria-pressed', String(isActive));
+                });
+
+                localStorage.setItem('preferred-language', language);
+
+                const cursorCopy = document.querySelector<HTMLElement>('.cursor-content');
+                const original = document.querySelector<HTMLElement>('.original-content');
+                if (cursorCopy && original) cursorCopy.innerHTML = original.innerHTML;
+            }
+
+            const savedLanguage = localStorage.getItem('preferred-language');
+            const initialLanguage: Language = savedLanguage === 'pt' || savedLanguage === 'en'
+                ? savedLanguage
+                : 'en';
+
+            setLanguage(initialLanguage);
+
+            document.querySelectorAll<HTMLButtonElement>('[data-language]').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const language = button.dataset.language;
+                    if (language === 'pt' || language === 'en') setLanguage(language);
+                });
+            });
+        </script>
+
+        <script>
             const cursor = document.querySelector('.custom-cursor') as HTMLElement;
             const cursorContent = document.querySelector('.cursor-content') as HTMLElement;
             const originalContent = document.querySelector('.original-content') as HTMLElement;
             
             const hoverTargets = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li, strong, em, figcaption, img');
-            const hoverLinks = document.querySelectorAll('a, #lang')
+            const hoverLinks = document.querySelectorAll('a, .lang-option')
 
             if (cursor && cursorContent && originalContent) {
                 cursorContent.innerHTML = originalContent.innerHTML;
